@@ -1,11 +1,11 @@
 import 'package:curved_labeled_navigation_bar/curved_navigation_bar.dart';
 import 'package:curved_labeled_navigation_bar/curved_navigation_bar_item.dart';
 import 'package:flutter/material.dart';
-import 'package:tune_spot/screens/artist.dart';
-import 'package:tune_spot/screens/playlist.dart';
-import 'package:tune_spot/screens/search.dart';
+import 'package:tune_spot/screens/screen-pages/shazam.dart';
+import 'package:tune_spot/screens/playlist-portions/playlist.dart';
+import 'package:tune_spot/screens/screen-pages/search.dart';
 
-import 'homescreen.dart';
+import 'screen-pages/homescreen.dart';
 
 class nav_bar extends StatefulWidget {
   const nav_bar({super.key});
@@ -44,13 +44,13 @@ class _nav_barState extends State<nav_bar> {
         body: screens[index],
         bottomNavigationBar: Theme(
           data: Theme.of(context)
-              .copyWith(iconTheme: IconThemeData(color: Colors.white)),
+              .copyWith(iconTheme: const IconThemeData(color: Colors.white)),
           child: CurvedNavigationBar(
-            color: Color.fromARGB(255, 239, 116, 81),
+            color: const Color.fromARGB(255, 239, 116, 81),
             key: navigationKey,
             height: 60,
             backgroundColor: Colors.transparent,
-            buttonBackgroundColor: Color.fromARGB(255, 239, 116, 81),
+            buttonBackgroundColor: const Color.fromARGB(255, 239, 116, 81),
             items: items,
             onTap: (index) => setState(() => this.index = index),
           ),

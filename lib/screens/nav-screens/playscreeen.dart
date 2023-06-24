@@ -6,7 +6,7 @@ import 'package:on_audio_query/on_audio_query.dart';
 import 'package:tune_spot/functions/add-t-fav.dart';
 import 'package:tune_spot/screens/splash-screen.dart';
 
-import 'functions.dart';
+import '../../functions/functions.dart';
 
 class PlayingScreen extends StatefulWidget {
   final int index;
@@ -116,11 +116,12 @@ class _PlayingScreenState extends State<PlayingScreen> {
                 player.builderRealtimePlayingInfos(
                     builder: (context, RealtimePlayingInfos) {
                   return ProgressBar(
-                      thumbColor: Color.fromARGB(255, 239, 116, 81),
+                      progressBarColor: Color.fromARGB(255, 239, 116, 81),
+                      thumbColor: Color.fromARGB(255, 218, 62, 10),
                       bufferedBarColor: Colors.black,
-                      baseBarColor: Colors.white,
-                      thumbGlowColor: Colors.red,
-                      thumbGlowRadius: 20,
+                      baseBarColor: Colors.grey,
+                      thumbGlowColor: Color.fromARGB(255, 218, 62, 10),
+                      thumbGlowRadius: 15,
                       barCapShape: BarCapShape.square,
                       progress: RealtimePlayingInfos.currentPosition,
                       total: RealtimePlayingInfos.duration,
@@ -130,10 +131,6 @@ class _PlayingScreenState extends State<PlayingScreen> {
                 }),
                 const SizedBox(
                   height: 15,
-                ),
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [Text('1:00'), Text('2:00')],
                 ),
                 const SizedBox(height: 20),
                 Row(

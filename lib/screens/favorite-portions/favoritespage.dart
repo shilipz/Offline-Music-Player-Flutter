@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:tune_spot/screens/miniplayer.dart';
-import 'package:tune_spot/screens/playscreeen.dart';
+import 'package:tune_spot/screens/nav-screens/playscreeen.dart';
 
-import '../model/favoriteModel.dart';
+import '../../model/favoriteModel.dart';
 
+// ignore: camel_case_types
 class Favorite_page extends StatefulWidget {
   const Favorite_page({super.key});
 
@@ -14,6 +15,7 @@ class Favorite_page extends StatefulWidget {
   State<Favorite_page> createState() => _Favorite_pageState();
 }
 
+// ignore: camel_case_types
 class _Favorite_pageState extends State<Favorite_page> {
   List<Audio> allsongs = [];
 
@@ -43,9 +45,9 @@ class _Favorite_pageState extends State<Favorite_page> {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              Container(
+              const SizedBox(
                 width: double.infinity,
-                child: const Column(
+                child: Column(
                   children: [
                     SizedBox(height: 40),
                     Padding(
@@ -100,7 +102,7 @@ class _Favorite_pageState extends State<Favorite_page> {
                                   setState(() {});
                                   Navigator.of(context)
                                       .push(MaterialPageRoute(builder: (ctx) {
-                                    return PlayingScreen(
+                                    return const PlayingScreen(
                                       index: 0,
                                     );
                                   }));
@@ -131,7 +133,7 @@ class _Favorite_pageState extends State<Favorite_page> {
                                     onPressed: () {
                                       removeFromFavorite(context, index);
                                     },
-                                    icon: Icon(Icons.more_vert)),
+                                    icon: const Icon(Icons.more_vert)),
                               );
                             },
                             separatorBuilder: (ctx, index) {
@@ -142,7 +144,7 @@ class _Favorite_pageState extends State<Favorite_page> {
             ],
           ),
         ),
-        bottomSheet: MiniPlayer(),
+        bottomSheet: const MiniPlayer(),
       ),
     );
   }
@@ -183,6 +185,7 @@ class _Favorite_pageState extends State<Favorite_page> {
                     onPressed: () async {
                       allsongs.removeAt(index);
                       await favSongsDB.deleteAt(index);
+                      // ignore: use_build_context_synchronously
                       Navigator.of(context).pop();
                       setState(() {});
                     },
@@ -204,13 +207,13 @@ class _Favorite_pageState extends State<Favorite_page> {
       context: ctx,
       builder: (ctx1) {
         return Container(
-          color: Color.fromARGB(255, 45, 6, 94),
+          color: const Color.fromARGB(255, 45, 6, 94),
           child: Container(
             width: double.infinity,
             height: 120,
             decoration: BoxDecoration(
                 color: Colors.purple.shade400,
-                borderRadius: BorderRadius.only(
+                borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(20),
                     topRight: Radius.circular(20))),
             child: Column(
@@ -221,7 +224,7 @@ class _Favorite_pageState extends State<Favorite_page> {
                     onPressed: () {
                       Navigator.of(ctx1).pop();
                     },
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.arrow_drop_down,
                       color: Colors.white,
                     )),
@@ -233,24 +236,24 @@ class _Favorite_pageState extends State<Favorite_page> {
                         onPressed: () {
                           Navigator.of(ctx1).pop();
                           ScaffoldMessenger.of(ctx).showSnackBar(SnackBar(
-                            content: Text('Removed from favorite'),
-                            margin: EdgeInsets.all(10),
+                            content: const Text('Removed from favorite'),
+                            margin: const EdgeInsets.all(10),
                             behavior: SnackBarBehavior.floating,
                             backgroundColor: Colors.red.shade300,
-                            duration: Duration(seconds: 2),
+                            duration: const Duration(seconds: 2),
                           ));
                         },
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.remove_circle_outline,
                           color: Colors.white,
                         ),
-                        label: Text(
+                        label: const Text(
                           'Remove from favorite',
                           style: TextStyle(color: Colors.white),
                         )),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 )
               ],

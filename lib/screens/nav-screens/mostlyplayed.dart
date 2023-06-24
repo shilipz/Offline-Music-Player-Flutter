@@ -5,8 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:tune_spot/model/mostlyplayed_model.dart';
-import 'package:tune_spot/screens/playscreeen.dart';
-import 'package:tune_spot/screens/settings.dart';
+import 'package:tune_spot/screens/nav-screens/playscreeen.dart';
+import 'package:tune_spot/screens/screen-pages/settings.dart';
+
+import '../../model/songs_model.dart';
+
+//List<SongDetails> ListOfSongs = [];
 
 class mostplayedscreen extends StatefulWidget {
   const mostplayedscreen({super.key});
@@ -66,10 +70,11 @@ class _mostplayedscreenState extends State<mostplayedscreen> {
               valueListenable: mostplayedBox.listenable(),
               builder: (context, Box<MostlyPlayed> mstsonbox, child) {
                 if (mostlyplayeslist.isEmpty) {
-                  return Center(
+                  return const Center(
                     child: Text(
                       'No songs played',
-                      style: TextStyle(color: Colors.white),
+                      style:
+                          TextStyle(color: Color.fromARGB(255, 239, 116, 81)),
                       textAlign: TextAlign.center,
                     ),
                   );
@@ -92,7 +97,7 @@ class _mostplayedscreenState extends State<mostplayedscreen> {
                                 context,
                                 MaterialPageRoute(
                                     builder: ((context) =>
-                                        PlayingScreen(index: 0))));
+                                        const PlayingScreen(index: 0))));
                           }),
                           leading: QueryArtworkWidget(
                             id: mostlyplayeslist[index].id!,
@@ -103,8 +108,8 @@ class _mostplayedscreenState extends State<mostplayedscreen> {
                             nullArtworkWidget: ClipRRect(
                               borderRadius:
                                   const BorderRadius.all(Radius.circular(50)),
-                              child: Image.asset(
-                                'assets/Image/StBrARCw_400x400.jpg',
+                              child: Image.network(
+                                'https://www.hdwallpapers.in/download/music_headphones_4k_hd_music-HD.jpg',
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -113,7 +118,8 @@ class _mostplayedscreenState extends State<mostplayedscreen> {
                             mostlyplayeslist[index].name!,
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
-                            style: TextStyle(color: Colors.white),
+                            style: const TextStyle(
+                                color: Color.fromARGB(255, 239, 116, 81)),
                           ),
                         );
                       }));

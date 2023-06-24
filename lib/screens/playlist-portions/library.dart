@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'miniplayer.dart';
+import '../miniplayer.dart';
 
 class Library extends StatefulWidget {
   const Library({super.key});
@@ -111,7 +111,7 @@ class _LibraryState extends State<Library> {
             ],
           ),
         ),
-        bottomSheet: MiniPlayer(),
+        bottomSheet: const MiniPlayer(),
       ),
     );
   }

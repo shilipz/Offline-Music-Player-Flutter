@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:tune_spot/screens/favoritespage.dart';
-import 'package:tune_spot/screens/mostlyplayed.dart';
-import 'package:tune_spot/screens/search.dart';
-import 'package:tune_spot/screens/settings.dart';
+import 'package:tune_spot/model/favoriteModel.dart';
+import 'package:tune_spot/screens/favorite-portions/favoritespage.dart';
+import 'package:tune_spot/screens/nav-screens/mostlyplayed.dart';
+import 'package:tune_spot/screens/nav-screens/recentlyplayedscreen.dart';
+import 'package:tune_spot/screens/screen-pages/settings.dart';
 import 'package:tune_spot/screens/splash-screen.dart';
 
-import 'allsongs.dart';
-import 'miniplayer.dart';
+import '../../model/songs_model.dart';
+import '../nav-screens/allsongs.dart';
+import '../miniplayer.dart';
+
+//List<SongDetails> ListOfSongs1 = [];
 
 class Homescreen extends StatefulWidget {
   const Homescreen({super.key});
@@ -85,13 +89,15 @@ class _HomescreenState extends State<Homescreen> {
                 children: [
                   GestureDetector(
                     onTap: () async {
+                      print(
+                          '................${ListOfSongs.length}.................');
                       Navigator.push(
                           context,
                           MaterialPageRoute(
                             builder: (
                               context,
                             ) =>
-                                AllSongs(index: 0),
+                                const AllSongs(index: 0),
                           ));
                     },
                     child: hometiles(
@@ -104,35 +110,40 @@ class _HomescreenState extends State<Homescreen> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => Favorite_page()));
+                              builder: (context) => const Favorite_page()));
                     },
                     child: hometiles(
                         icon: Icons.favorite_outline_rounded,
                         tilename: 'Favourites',
-                        songcount: dbSongs.length.toString()),
+                        songcount: favSongsDB.length.toString()),
                   ),
                   GestureDetector(
                     onTap: () async {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => mostplayedscreen()));
+                              builder: (context) => const mostplayedscreen()));
                     },
                     child: hometiles(
                         icon: Icons.loop,
                         tilename: 'Mostly played',
-                        songcount: '23 songs'),
+                        songcount: ''),
                   ),
-                  hometiles(
-                      icon: Icons.recent_actors,
-                      tilename: 'Recently played',
-                      songcount: '3r3g'),
+                  GestureDetector(
+                    onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const Recentlyplayedscreen(),
+                    )),
+                    child: hometiles(
+                        icon: Icons.recent_actors,
+                        tilename: 'Recently played',
+                        songcount: ' '),
+                  ),
                 ],
               ),
             ],
           ),
         ),
-        bottomSheet: MiniPlayer(),
+        bottomSheet: const MiniPlayer(),
       ),
     );
   }

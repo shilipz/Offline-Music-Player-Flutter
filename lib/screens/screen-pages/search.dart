@@ -3,10 +3,10 @@ import 'dart:developer';
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/material.dart';
 import 'package:on_audio_query/on_audio_query.dart';
-import 'package:tune_spot/screens/playscreeen.dart';
-import 'package:tune_spot/screens/settings.dart';
+import 'package:tune_spot/screens/nav-screens/playscreeen.dart';
+import 'package:tune_spot/screens/screen-pages/settings.dart';
 import 'package:tune_spot/screens/splash-screen.dart';
-import '../model/songs_model.dart';
+import '../../model/songs_model.dart';
 
 List<SongDetails> searchsongs = List.from(dbSongs);
 List<SongDetails> dbSongs = ListOfSongs;
@@ -20,7 +20,7 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
-  AssetsAudioPlayer _audioplayer = AssetsAudioPlayer.withId('0');
+  final AssetsAudioPlayer _audioplayer = AssetsAudioPlayer.withId('0');
   // var box = SongBox.getinstance();
   // List<SongDetails> searchsongs = List.from(dbSongs);
   // List<SongDetails> dbSongs = ListOfSongs;
@@ -69,7 +69,7 @@ class _SearchScreenState extends State<SearchScreen> {
               padding: const EdgeInsets.only(left: 12, right: 12),
               child: Container(
                 decoration: BoxDecoration(
-                    color: const Color.fromARGB(255, 239, 116, 81),
+                    color: const Color.fromARGB(255, 236, 182, 167),
                     borderRadius: BorderRadius.circular(12)),
                 child: Row(
                   children: [
@@ -106,8 +106,9 @@ class _SearchScreenState extends State<SearchScreen> {
                 child: searchsongs.isEmpty
                     ? const Center(
                         child: Text(
-                          'No music found',
-                          style: TextStyle(color: Colors.white),
+                          'search song',
+                          style: TextStyle(
+                              color: Color.fromARGB(255, 239, 116, 81)),
                         ),
                       )
                     : ListView.separated(
@@ -126,7 +127,8 @@ class _SearchScreenState extends State<SearchScreen> {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: ((context) => PlayingScreen(
+                                        builder: ((context) =>
+                                            const PlayingScreen(
                                               index: 0,
                                             ))));
                               }),
@@ -134,7 +136,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                 songz.name,
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
+                                style: const TextStyle(
                                     color: Colors.black,
                                     fontWeight: FontWeight.w500),
                               ),
@@ -152,7 +154,7 @@ class _SearchScreenState extends State<SearchScreen> {
                               ));
                         },
                         separatorBuilder: (ctx, index) {
-                          return Divider();
+                          return const Divider();
                         },
                         itemCount: searchsongs.length),
               ),
@@ -168,7 +170,6 @@ class _SearchScreenState extends State<SearchScreen> {
           element.name.toLowerCase().contains(value.toLowerCase())).toList();
       allsongs.clear();
       for (var item in searchsongs) {
-        print(item.name);
         allsongs.add(
           Audio.file(
             item.songUrl.toString(),

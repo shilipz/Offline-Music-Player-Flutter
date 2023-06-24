@@ -5,8 +5,8 @@ import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/material.dart';
 import 'package:marquee/marquee.dart';
 import 'package:on_audio_query/on_audio_query.dart';
-import 'package:tune_spot/screens/functions.dart';
-import 'package:tune_spot/screens/playscreeen.dart';
+import 'package:tune_spot/functions/functions.dart';
+import 'package:tune_spot/screens/nav-screens/playscreeen.dart';
 
 class MiniPlayer extends StatefulWidget {
   const MiniPlayer({super.key});
@@ -90,7 +90,7 @@ class _MiniPlayerState extends State<MiniPlayer> {
                                   player.pause();
                                 }
                               },
-                              icon: Icon(
+                              icon: const Icon(
                                 Icons.skip_next,
                                 color: Colors.white,
                               )),

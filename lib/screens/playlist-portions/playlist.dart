@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:tune_spot/model/songs_model.dart';
-import 'package:tune_spot/screens/playlist_songs.dart';
-import 'package:tune_spot/screens/settings.dart';
+import 'package:tune_spot/screens/playlist-portions/playlist_songs.dart';
+import 'package:tune_spot/screens/screen-pages/settings.dart';
 
-import '../model/playlistmodel.dart';
+import '../../model/playlistmodel.dart';
 
 class PlayList extends StatefulWidget {
   const PlayList({super.key});

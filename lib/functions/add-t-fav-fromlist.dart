@@ -1,22 +1,23 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:tune_spot/model/favoriteModel.dart';
+import 'package:tune_spot/model/songs_model.dart';
 import 'package:tune_spot/screens/splash-screen.dart';
-import '../model/favoriteModel.dart';
-import '../model/songs_model.dart';
 
 List<Favorite> fav = [];
 
-// ignore: must_be_immutable
-class AddToFav extends StatefulWidget {
+// ignore: camel_case_types, must_be_immutable
+class addfavtext extends StatefulWidget {
   int index;
-  AddToFav({required this.index, super.key});
+  addfavtext({required this.index, super.key});
 
   @override
-  State<AddToFav> createState() => _AddToFavState();
+  State<addfavtext> createState() => _addfavtextState();
 }
 
-class _AddToFavState extends State<AddToFav> {
+// ignore: camel_case_types
+class _addfavtextState extends State<addfavtext> {
   bool favorited = false;
   final box = SongBox.getinstance();
   late List<SongDetails> dbsongs;
@@ -33,11 +34,7 @@ class _AddToFavState extends State<AddToFav> {
             .where(
                 (element) => element.songname == ListOfSongs[widget.index].name)
             .isEmpty
-        ? IconButton(
-            icon: const Icon(
-              Icons.favorite_border,
-              color: Colors.red,
-            ),
+        ? TextButton(
             onPressed: () {
               favSongsDB.add(Favorite(
                   songname: ListOfSongs[widget.index].name,
@@ -47,26 +44,24 @@ class _AddToFavState extends State<AddToFav> {
                   id: ListOfSongs[widget.index].id));
               log(favSongsDB.values.length.toString());
               setState(() {});
-              // Navigator.pop(context);
               ScaffoldMessenger.of(context)
                 ..removeCurrentSnackBar()
                 ..showSnackBar(const SnackBar(
                   behavior: SnackBarBehavior.floating,
                   content: Text(
-                    'Added to favorite',
+                    'Added to favorites',
+                    style: TextStyle(color: Colors.white),
                     textAlign: TextAlign.center,
                   ),
-                  backgroundColor: Colors.green,
+                  backgroundColor: Color.fromARGB(255, 229, 115, 115),
                 ));
             },
-            /*  child: const Text('Add To Favorites',
-                style: TextStyle(color: Colors.black)) */
-          )
-        : IconButton(
-            icon: const Icon(
-              Icons.favorite,
-              color: Colors.red,
+            child: const Text(
+              'Add to favorites',
+              style: TextStyle(color: Colors.black),
             ),
+          )
+        : TextButton(
             onPressed: () async {
               if (favSongsDB.length < 1) {
                 favSongsDB.clear();
@@ -77,23 +72,21 @@ class _AddToFavState extends State<AddToFav> {
                 await favSongsDB.deleteAt(currentIndex);
                 log(favSongsDB.values.length.toString());
                 setState(() {});
-                // Navigator.pop(context);
                 // ignore: use_build_context_synchronously
                 ScaffoldMessenger.of(context)
                   ..removeCurrentSnackBar()
                   ..showSnackBar(const SnackBar(
                     behavior: SnackBarBehavior.floating,
                     content: Text(
-                      'Removed From Favorites',
+                      'Removed from favorites',
                       textAlign: TextAlign.center,
                       style: TextStyle(color: Colors.white),
                     ),
-                    backgroundColor: Colors.red,
+                    backgroundColor: Colors.green,
                   ));
               }
             },
-            /* child: const Text('Remove from favorite',
-                style: TextStyle(color: Colors.red)) */
+            child: const Text('Added to favorite'),
           );
   }
 }

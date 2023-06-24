@@ -29,9 +29,3 @@ late Box<MostlyPlayed> mostplayedBox;
 openMostPlayedDb() async {
   mostplayedBox = await Hive.openBox('mostplayedsngz');
 }
-
-updatePlayedSongCount(MostlyPlayed value, int index) {
-  int? count = value.count;
-  value.count = (count! + 1);
-  mostplayedBox.put(index, value);
-}

@@ -3,12 +3,12 @@ import 'dart:ui';
 import 'package:curved_labeled_navigation_bar/curved_navigation_bar.dart';
 import 'package:curved_labeled_navigation_bar/curved_navigation_bar_item.dart';
 import 'package:flutter/material.dart';
-import 'package:tune_spot/screens/homescreen.dart';
-import 'package:tune_spot/screens/library.dart';
-import 'package:tune_spot/screens/playscreeen.dart';
-import 'package:tune_spot/screens/search.dart';
+import 'package:tune_spot/screens/screen-pages/homescreen.dart';
+import 'package:tune_spot/screens/playlist-portions/library.dart';
+import 'package:tune_spot/screens/nav-screens/playscreeen.dart';
+import 'package:tune_spot/screens/screen-pages/search.dart';
 
-import 'artist.dart';
+import 'screen-pages/shazam.dart';
 import 'miniplayer.dart';
 
 class travel extends StatefulWidget {
@@ -24,12 +24,12 @@ class _travelState extends State<travel> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Color.fromARGB(255, 239, 116, 81),
+          backgroundColor: const Color.fromARGB(255, 239, 116, 81),
         ),
         extendBody: true,
         body: Padding(
           padding: const EdgeInsets.all(22),
-          child: Container(
+          child: SizedBox(
             child: Column(
               children: [
                 Stack(
@@ -58,12 +58,12 @@ class _travelState extends State<travel> {
                     ),
                   ],
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Stack(children: [
-                      Container(
+                      const SizedBox(
                         child: CircleAvatar(
                             backgroundColor: Color.fromARGB(255, 239, 116, 81),
                             radius: 25),
@@ -71,7 +71,7 @@ class _travelState extends State<travel> {
                       Positioned(
                         child: IconButton(
                             onPressed: () {},
-                            icon: Icon(
+                            icon: const Icon(
                               Icons.play_arrow,
                               size: 35,
                               color: Colors.white,
@@ -143,7 +143,8 @@ class _travelState extends State<travel> {
                 Navigator.push(
                     // ignore: prefer_const_constructors
                     context,
-                    MaterialPageRoute(builder: (context) => SearchScreen()));
+                    MaterialPageRoute(
+                        builder: (context) => const SearchScreen()));
                 break;
               case 2:
                 Navigator.push(
@@ -162,7 +163,7 @@ class _travelState extends State<travel> {
           // ----------------------------miniplayer-----------------------------
           // ignore: prefer_const_constructors
         ),
-        bottomSheet: MiniPlayer(),
+        bottomSheet: const MiniPlayer(),
       ),
     );
   }

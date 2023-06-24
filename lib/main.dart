@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:tune_spot/model/favoriteModel.dart';
 import 'package:tune_spot/model/mostlyplayed_model.dart';
+import 'package:tune_spot/model/recentlyplayedModel.dart';
 import 'package:tune_spot/screens/splash-screen.dart';
 import 'model/playlistmodel.dart';
 import 'model/songs_model.dart';
@@ -18,10 +19,14 @@ Future<void> main(List<String> args) async {
 
   Hive.registerAdapter(PlaylistsongzAdapter());
   openPlaylistDB();
+
   Hive.registerAdapter(MostlyPlayedAdapter());
   openMostPlayedDb();
 
-  runApp(MyApp());
+  Hive.registerAdapter(RecentlyPlayedAdapter());
+  openRecenlyPlayedDb();
+
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -30,11 +35,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-          appBarTheme: AppBarTheme(
-              color: Color.fromARGB(255, 239, 116, 81),
-              titleTextStyle: TextStyle(color: Colors.white))),
-      home: SplashScreen(),
+        appBarTheme: const AppBarTheme(
+          color: Color.fromARGB(255, 239, 116, 81),
+          titleTextStyle: TextStyle(color: Colors.white),
+        ),
+      ),
+      home: const SplashScreen(),
     );
   }
 }
